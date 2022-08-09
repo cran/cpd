@@ -6,7 +6,7 @@
 \alias{cpd-package}
 \title{The Complex Triparametric Pearson (CTP) Distribution}
 \description{
-Probability mass function, distribution function, quantile function and random generation for the Complex Triparametric Pearson (CTP) and Complex Biparametric Pearson (CBP) distributions developed by Rodriguez-Avi et al (2003) <doi:10.1007/s00362-002-0134-7>, Rodriguez-Avi et al (2004) <doi:10.1007/BF02778271> and Olmo-Jimenez et al (2018) <doi:10.1080/00949655.2018.1482897>. The package also contains maximum-likelihood fitting functions for these models.
+Probability mass function, distribution function, quantile function and random generation for the Complex Triparametric Pearson (CTP) and Complex Biparametric Pearson (CBP) distributions developed by Rodriguez-Avi et al (2003) \doi{10.1007/s00362-002-0134-7}, Rodriguez-Avi et al (2004) \doi{10.1007/BF02778271} and Olmo-Jimenez et al (2018) \doi{10.1080/00949655.2018.1482897}. The package also contains maximum-likelihood fitting functions for these models.
 }
 \details{
 The Complex Triparametric Pearson (CTP) distribution with parameters \eqn{a}, \eqn{b} and \eqn{\gamma} has pmf
@@ -16,6 +16,9 @@ where \eqn{i} is the imaginary unit, \eqn{\Gamma(·)} the gamma function and
 the normalizing constant.
 
 If \eqn{a=0} the CTP is a Complex Biparametric Pearson (CBP) distribution, so the pmf of the CBP distribution is obtained.
+
+If \eqn{b=0} the CTP is an Extended Biparametric Waring (EBW) distribution, so the pmf of the EBW distribution is obtained.
+In this case, \eqn{a} is call \eqn{\alpha}.
 
 The mean and the variance of the CTP distribution are
 \eqn{E(X)=\mu=(a^2+b^2)/(\gamma-2a-1)} and \eqn{Var(X)=E(X)·(E(X)+\gamma-1)/(\gamma-2a-2)}
@@ -30,6 +33,8 @@ if \eqn{a>-(\mu+1)/2}. In particular, if \eqn{a>=0} the CTP is always overdisper
 \insertRef{RCSO2004}{cpd}
 
 \insertRef{ROC2018}{cpd}
+
+\insertRef{COR2021}{cpd}
 }
 \author{
 \strong{Maintainer}: Silverio Vilchez-Lopez \email{svilchez@ujaen.es}

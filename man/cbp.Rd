@@ -15,12 +15,6 @@ pcbp(q, b, gamma, lower.tail = TRUE)
 qcbp(p, b, gamma, lower.tail = TRUE)
 
 rcbp(n, b, gamma)
-
-pcbp(q, b, gamma, lower.tail = TRUE)
-
-qcbp(p, b, gamma, lower.tail = TRUE)
-
-rcbp(n, b, gamma)
 }
 \arguments{
 \item{x}{vector of (non-negative integer) quantiles.}
@@ -66,10 +60,14 @@ dcbp(c(3,4),2,5)
 # Examples for the function pcbp
 pcbp(3,2,3)
 pcbp(c(3,4),2,3)
+
 # Examples for the function qcbp
 qcbp(0.5,2,3)
 qcbp(c(.8,.9),2,3)
-# Examples for the function rcbp(4,1,3)
+
+# Examples for the function rcbp
+rcbp(10,1,3)
+
 }
 \references{
 \insertRef{RCS2003}{cpd}

@@ -2,32 +2,28 @@
 % Please edit documentation in R/fitctp.R
 \name{fitctp}
 \alias{fitctp}
-\title{Maximum-likelihood fitting of the Complex Triparametric Pearson (CTP) distribution}
+\title{Maximum-likelihood fitting of the CTP distribution}
 \usage{
-fitctp(x, astart = 0, bstart = 1, gammastart = 1.1, method = "L-BFGS-B", 
-       moments = FALSE, hessian = TRUE, control = list(), ...)
+fitctp(x, astart = NULL, bstart = NULL, gammastart = NULL, 
+          method = "L-BFGS-B", control = list(), ...)
 }
 \arguments{
 \item{x}{A numeric vector of length at least one containing only finite values.}
 
-\item{astart}{An starting value for the parameter \eqn{a}; by default 0.}
+\item{astart}{A starting value for the parameter \eqn{a>0}; by default NULL.}
 
-\item{bstart}{An starting value for the parameter \eqn{b}; by default 1.}
+\item{bstart}{A starting value for the parameter \eqn{b}; by default NULL.}
 
-\item{gammastart}{An starting value for the parameter \eqn{\gamma}; by default 1.1.}
+\item{gammastart}{A starting value for the parameter \eqn{\gamma>max(0,2a)}; by default NULL.}
 
-\item{method}{The method to be used in fitting the model. The default method is "L-BFGS-B" (optim).}
-
-\item{moments}{If \code{TRUE} the estimates of \eqn{a}, \eqn{b} and \eqn{\gamma} by the method of moments are used as starting values (if it is posible). By default this argument is \code{FALSE}.}
-
-\item{hessian}{If \code{TRUE} the hessian of the objective function at the minimum is returned.}
+\item{method}{The method to be used in fitting the model. See 'Details'.}
 
 \item{control}{A list of parameters for controlling the fitting process.}
 
 \item{...}{Additional parameters.}
 }
 \value{
-An object of class "fitctp" is a list containing the following components:
+An object of class \code{'fitCTP'} is a list containing the following components:
 
 \itemize{
 \item \code{n}, the number of observations,
@@ -44,16 +40,40 @@ An object of class "fitctp" is a list containing the following components:
 \item \code{converged},  logical value that indicates if the optimization algorithms succesfull,
 \item \code{method}, the name of the fitter function used.
 }
+
+Generic functions:
+
+\itemize{
+\item \code{print}: The print of a \code{'fitCTP'} object shows the ML parameter estimates and their standard errors in parenthesis.
+\item \code{summary}: The summary provides the ML parameter estimates, their standard errors and the statistic and p-value of the Wald test to check if the parameters are significant.
+This summary also shows the loglikelihood, AIC and BIC values, as well as the results for the chi-squared goodness-of-fit test and the Kolmogorov-Smirnov test for discrete variables. Finally, the correlation matrix between parameter estimates appears.
+\item \code{coef}: It extracts the fitted coefficients from a \code{'fitCTP'} object.
+\item \code{logLik}: It extracts the estimated log-likelihood from a \code{'fitCTP'} object.
+\item \code{AIC}: It extracts the value of the Akaike Information Criterion from a \code{'fitCTP'} object.
+\item \code{BIC}: It extracts the value of the Bayesian Information Criterion from a \code{'fitCTP'} object.
+\item \code{plot}: It shows the plot of a \code{'fitCTP'} object. Observed and theoretical probabilities, empirical and theoretical cumulative distribution functions or empirical cumulative probabilities against theoretical cumulative probabilities are the three plot types.
+}
 }
 \description{
-Maximum-likelihood fitting of the Complex Triparametric Pearson (CTP) distribution with parameters \eqn{a}, \eqn{b} and \eqn{\gamma}.
+Maximum-likelihood fitting of the Complex Triparametric Pearson (CTP) distribution with parameters \eqn{a}, \eqn{b} and \eqn{\gamma}. Generic
+methods are \code{print}, \code{summary}, \code{coef}, \code{logLik}, \code{AIC}, \code{BIC} and \code{plot}.
+}
+\details{
+If the starting values of the parameters \eqn{a}, \eqn{b} and \eqn{\gamma} are omitted (default option), 
+they are computing by the method of moments (if possible; otherwise they must be entered).
+
+The default method is \code{"L-BFGS-B"} (see details in \code{\link{optim}} function),
+but non-linear minimization (\code{\link{nlm}}) or those included in the \code{optim} function (\code{"Nelder-Mead"}, 
+\code{"BFGS"}, \code{"CG"} and \code{"SANN"}) may be used.
+
+Standard error (SE) estimates for \eqn{a}, \eqn{b}
+and \eqn{\gamma} are provided by the default method; otherwise, SE for \eqn{\gamma_0} where \eqn{\gamma=exp(\gamma_0)} is computed.
 }
 \examples{
 set.seed(123)
 x <- rctp(500, -0.5, 1, 2)
 fitctp(x)
-fitctp(x, astart = 1, bstart = 1.1, gammastart = 3)
-fitctp(x, moments = TRUE)
+summary(fitctp(x, astart = 1, bstart = 1.1, gammastart = 3))
 }
 \references{
 \insertRef{RCSO2004}{cpd}
@@ -61,5 +81,9 @@ fitctp(x, moments = TRUE)
 \insertRef{ROC2018}{cpd}
 }
 \seealso{
+Plot of observed and theoretical frequencies for a CTP fit: \code{\link{plot.fitCTP}}
+
 Maximum-likelihood fitting for the CBP distribution: \code{\link{fitcbp}}.
+
+Maximum-likelihood fitting for the EBW distribution: \code{\link{fitebw}}.
 }

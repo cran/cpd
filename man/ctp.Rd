@@ -15,12 +15,6 @@ pctp(q, a, b, gamma, lower.tail = TRUE)
 qctp(p, a, b, gamma, lower.tail = TRUE)
 
 rctp(n, a, b, gamma)
-
-pctp(q, a, b, gamma, lower.tail = TRUE)
-
-qctp(p, a, b, gamma, lower.tail = TRUE)
-
-rctp(n, a, b, gamma)
 }
 \arguments{
 \item{x}{vector of (non-negative integer) quantiles.}
@@ -43,6 +37,7 @@ rctp(n, a, b, gamma)
 \code{dctp} gives the pmf, \code{pctp} gives the distribution function, \code{qctp} gives the quantile function and \code{rctp} generates random values.
 
 If \eqn{a = 0} the probability mass function, distribution function, quantile function and random generation function for the CBP distribution arise.
+If \eqn{b = 0} the probability mass function, distribution function, quantile function and random generation function for the EBW distribution arise.
 }
 \description{
 Probability mass function, distribution function, quantile function and random generation for the Complex Triparametric Pearson (CTP) distribution with parameters \eqn{a}, \eqn{b} and \eqn{\gamma}.
@@ -55,6 +50,7 @@ where \eqn{i} is the imaginary unit, \eqn{\Gamma(·)} the gamma function and
 the normalizing constant.
 
 If \eqn{a=0} the CTP is a Complex Biparametric Pearson (CBP) distribution, so the pmf of the CBP distribution is obtained.
+If \eqn{b=0} the CTP is an Extended Biparametric Waring (EBW) distribution, so the pmf of the EBW distribution is obtained.																															  
 
 The mean and the variance of the CTP distribution are
 \eqn{E(X)=\mu=(a^2+b^2)/(\gamma-2a-1)} and \eqn{Var(X)=\mu(\mu+\gamma-1)/(\gamma-2a-2)}
@@ -71,11 +67,14 @@ dctp(c(3,4),1,2,5)
 # Examples for the function pctp
 pctp(3,1,2,3)
 pctp(c(3,4),1,2,3)
+
 # Examples for the function qctp
 qctp(0.5,1,2,3)
 qctp(c(.8,.9),1,2,3)
+
 # Examples for the function rctp
-rctp(4,1,1,3)
+rctp(10,1,1,3)
+
 }
 \references{
 \insertRef{RCS2003}{cpd}
@@ -83,7 +82,9 @@ rctp(4,1,1,3)
 \insertRef{RCSO2004}{cpd}
 
 \insertRef{ROC2018}{cpd}
+
+\insertRef{COR2021}{cpd}
 }
 \seealso{
-Functions for maximum-likelihood fitting of the CTP and CBP distributions: \code{\link{fitctp}} and \code{\link{fitcbp}}.
+Functions for maximum-likelihood fitting of the CTP, CBP and EBW distributions: \code{\link{fitctp}}, \code{\link{fitcbp}} and \code{\link{fitebw}}.
 }
