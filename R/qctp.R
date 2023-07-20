@@ -12,8 +12,8 @@ qctp <- function(p, a, b, gamma, lower.tail = TRUE ){
   if ( mode(c(p,a,b,gamma)) != "numeric")
     stop( "non-numeric argument to mathematical function")
 
-  if( gamma <= 2 * a )
-    stop("gamma must be greater than 2a")
+  if( (gamma <= 2 * a) || (gamma <= 0) )
+    stop("gamma must be greater than max(0,2a)")
 
   icomplex <- sqrt(as.complex(-1))
   auxP=p[p<1 & p>0]

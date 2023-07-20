@@ -66,9 +66,10 @@ dctp <- function(x, a, b, gamma) {
   if ( mode(c(x,a,b,gamma)) != "numeric")
     stop( "non-numeric argument to mathematical function" )
 
-  if( gamma <= 2 * a )
-    stop("gamma must be greater than 2a")
+  if( (gamma <= 2 * a) || (gamma <= 0) )
+    stop("gamma must be greater than max(0,2a)")
 
+  
   x <- as.vector(x)
   errors<-c()
 
