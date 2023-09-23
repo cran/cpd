@@ -127,7 +127,7 @@ fitctp <- function(x, astart = NULL, bstart = NULL, gammastart = NULL,
     bstart <- sqrt(sol[1] - astart ^ 2)
     gammastart <- sol[3] + 1
     
-    if (is.nan(bstart) || gammastart <= max(0,astart)){
+    if (is.nan(bstart) || gammastart <= max(0, 2 * astart)){
       stop("The method of moments does not provide any estimates. Enter initial values for the parameters.")
     }
 
