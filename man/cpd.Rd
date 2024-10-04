@@ -2,8 +2,8 @@
 % Please edit documentation in R/cpd.R
 \docType{package}
 \name{cpd}
-\alias{cpd}
 \alias{cpd-package}
+\alias{cpd}
 \title{The Complex Triparametric Pearson (CTP) Distribution}
 \description{
 Probability mass function, distribution function, quantile function and random generation for the Complex Triparametric Pearson (CTP) and Complex Biparametric Pearson (CBP) distributions developed by Rodriguez-Avi et al (2003) \doi{10.1007/s00362-002-0134-7}, Rodriguez-Avi et al (2004) \doi{10.1007/BF02778271} and Olmo-Jimenez et al (2018) \doi{10.1080/00949655.2018.1482897}. The package also contains maximum-likelihood fitting functions for these models.

@@ -1,8 +1,8 @@
 Package: cpd
 Type: Package
 Title: Complex Pearson Distributions
-Version: 0.3.2
-Date: 2023-09-20
+Version: 0.3.3
+Date: 2024-10-04
 Authors@R: c(person("Silverio", "Vilchez-Lopez", role = c("aut", "cre"), email = "svilchez@ujaen.es"),
     person("Maria Jose", "Olmo-Jimenez", role = "aut", email = "mjolmo@ujaen.es"),
     person("Jose", "Rodriguez-Avi", role = "aut", email = "jravi@ujaen.es")
@@ -14,11 +14,11 @@ Imports: hypergeo, Rdpack, dgof, graphics
 RdMacros: Rdpack
 License: GPL (>= 2)
 Encoding: UTF-8
-RoxygenNote: 7.2.1
+RoxygenNote: 7.3.2
 NeedsCompilation: no
-Packaged: 2023-09-23 16:53:56 UTC; svilc_000
+Packaged: 2024-10-04 11:10:40 UTC; UJA
 Author: Silverio Vilchez-Lopez [aut, cre],
   Maria Jose Olmo-Jimenez [aut],
   Jose Rodriguez-Avi [aut]
 Repository: CRAN
-Date/Publication: 2023-09-23 18:20:02 UTC
+Date/Publication: 2024-10-04 13:30:06 UTC

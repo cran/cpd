@@ -163,6 +163,7 @@ fitctp <- function(x, astart = NULL, bstart = NULL, gammastart = NULL,
   converged<-FALSE
   
   if (method == "nlm") {
+    methodText = "nlm"
     fit <- try(nlm(logL, p = pstart, hessian = TRUE, iterlim = control$maxit, print.level = control$trace))
     if ('try-error' %in% class(fit)){
       if (control$trace > 0) {
@@ -175,10 +176,10 @@ fitctp <- function(x, astart = NULL, bstart = NULL, gammastart = NULL,
       fit$convergence <- fit$code
       if (fit$convergence < 3)
         converged = TRUE
-      methodText = "nlm"
     }
   }
   else if (any(method == c("Nelder-Mead", "BFGS", "CG", "SANN"))) {
+    methodText <- method
     fit <- try(optim(pstart, logL, method = method, hessian = TRUE,
                  control = list(maxit = control$maxit, trace = control$trace)))
     if ('try-error' %in% class(fit)){
@@ -187,12 +188,12 @@ fitctp <- function(x, astart = NULL, bstart = NULL, gammastart = NULL,
       }
     }
     else {
-      methodText <- method
       if (fit$convergence == 0)
         converged = TRUE
     }
   }
   else if (any(method == c("L-BFGS-B"))) {
+    methodText <- method
     fit <- try(optim(pstart, logL, method = method, lower = c(-Inf,0,0.0000001), upper = c(Inf,Inf,Inf), hessian = TRUE, control = list(maxit = control$maxit, trace = control$trace)))
     if ('try-error' %in% class(fit)){
       if (control$trace > 0) {
@@ -200,7 +201,6 @@ fitctp <- function(x, astart = NULL, bstart = NULL, gammastart = NULL,
       }
     }
     else {
-      methodText <- method
       if (fit$convergence == 0)
         converged<-TRUE
     }
@@ -400,6 +400,7 @@ fitcbp <- function(x, bstart = NULL, gammastart = NULL,
   #Optimization process
   converged<-FALSE
   if (method == "nlm") {
+    methodText = "nlm"
     fit <- try(nlm(logL, p = pstart, hessian = TRUE, iterlim = control$maxit, print.level = control$trace))
     if ('try-error' %in% class(fit)){
       if (control$trace > 0) {
@@ -412,11 +413,10 @@ fitcbp <- function(x, bstart = NULL, gammastart = NULL,
       fit$convergence <- fit$code
       if (fit$convergence < 3)
         converged<-TRUE
-							  
-      methodText = "nlm"
     }
   }
   else if (any(method == c("Nelder-Mead", "BFGS", "CG", "SANN"))) {
+    methodText <- method
     fit <- try(optim(pstart, logL, method = method, hessian = TRUE,
                  control = list(maxit = control$maxit, trace = control$trace)))
     if ('try-error' %in% class(fit)){
@@ -425,12 +425,12 @@ fitcbp <- function(x, bstart = NULL, gammastart = NULL,
       }
     }
     else {
-      methodText <- method
       if (fit$convergence == 0)
         converged = TRUE
     }
   }
   else if (any(method == c("L-BFGS-B"))) {
+    methodText <- method
     fit<-try(optim(pstart, logL, method = method, lower = c(0,0.0000001), upper = c(Inf,Inf), hessian = TRUE, control = list(maxit = control$maxit, trace = control$trace)))
     if ('try-error' %in% class(fit)){
       if (control$trace > 0) {
@@ -438,7 +438,6 @@ fitcbp <- function(x, bstart = NULL, gammastart = NULL,
       }
     }
     else {
-      methodText <- method
       if (fit$convergence == 0)
         converged<-TRUE
     }
@@ -701,6 +700,7 @@ else{
     }
 	  converged <- FALSE
 	  if (method == "nlm"){
+	    methodText <- "nlm"
   		fit <- try (nlm(logLVect[[ind]],p=pstart, hessian = TRUE, 
   						iterlim = control$maxit, print.level = control$trace),silent = TRUE)
   		if ('try-error' %in% class(fit)){
@@ -717,10 +717,9 @@ else{
   			  converged <- TRUE
   		  else
   		    converged <- FALSE
-  		  
-  		  methodText <- "nlm"
   		}
 	  }else if (any(method == c("Nelder-Mead", "BFGS", "CG", "SANN"))) {
+	    methodText <- method
   		fit <- try(optim(pstart, logLVect[[ind]], method = method, 
   					hessian = TRUE, control = list(maxit = control$maxit, trace = control$trace)), silent=TRUE)
   		if ('try-error' %in% class(fit)){
@@ -735,9 +734,9 @@ else{
   		  else
   		    converged <- FALSE
   		}
-  		methodText <- method
 	  }
 	  else if (any(method == c("L-BFGS-B"))) {
+	    methodText <- method
   		fit <- try(optim(pstart, logLVect[[ind]], 
   						lower = c(-Inf, 1e-10), upper = c(Inf, Inf), method = method, hessian = TRUE,
   					    control = list(maxit = control$maxit, trace = control$trace)), silent=TRUE)
@@ -753,7 +752,6 @@ else{
     		  else
     		    converged <- FALSE
     		}
-  		 methodText <- method
 	  }else{
 		  stop("Incorrect method")
 	  }
